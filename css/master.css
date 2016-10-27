@@ -102,4 +102,8 @@ a {
 		flex-direction: column;
 		text-align: left;
 	}
+	.img {
+		width: 50vw;
+		height: 50vw;
+	}
 }

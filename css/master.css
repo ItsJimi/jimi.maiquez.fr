@@ -14,7 +14,7 @@ html, body {
 	height: 100vh;
 	font-family: "latohairline", sans-serif;
 	color: #efefef;
-	background: url('../img/bg.jpeg') center;
+	background: url('../img/bg.jpeg') center no-repeat;
 	background-size: cover;
 	display: flex;
 	justify-content: center;
@@ -52,10 +52,6 @@ a {
 	background-size: cover;
 }
 
-.desc {
-
-}
-
 .name {
 	font-size: 40px;
 }
@@ -64,20 +60,37 @@ a {
 	font-size: 25px;
 }
 
-.links {
-
-}
-
-.projects {
-
-}
-
 .title {
 	font-size: 25px;
 }
 
-.projects_slider {
+.projects {
+	width: 100%;
+}
+
+.project {
+	background: #efefef;
+	color: #333;
+	width: calc(100% - 20px);
+	padding: 10px;
 	font-size: 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.project_description {
+	font-size: 16px;
+}
+
+.nav {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+.nav svg {
+	cursor: pointer;
 }
 
 @media (max-width: 500px) {
@@ -85,4 +98,8 @@ a {
     	flex-direction: column;
 		text-align: center;
     }
+	.project {
+		flex-direction: column;
+		text-align: left;
+	}
 }

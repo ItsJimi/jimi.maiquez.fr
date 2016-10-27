@@ -27,6 +27,36 @@ var getRepos = (url) => {
     })
 }
 
+var projects = null
+var loop = null
+var i = 0
+
+var prev = () => {
+	if (projects) {
+		clearInterval(loop)
+		if (i == 0)
+			i = projects.length
+		i--
+		document.getElementById('project_link').setAttribute("href", projects[i].html_url)
+		document.getElementById('project_name').innerHTML = projects[i].name
+		document.getElementById('project_description').innerHTML = projects[i].description
+		document.getElementById('project_language').innerHTML = projects[i].language
+	}
+}
+
+var next = () => {
+	if (projects) {
+		clearInterval(loop)
+		if (i == projects.length - 1)
+			i = -1
+		i++
+		document.getElementById('project_link').setAttribute("href", projects[i].html_url)
+		document.getElementById('project_name').innerHTML = projects[i].name
+		document.getElementById('project_description').innerHTML = projects[i].description
+		document.getElementById('project_language').innerHTML = projects[i].language
+	}
+}
+
 var ready = (cb) => {
 	if (document.readyState != 'loading')
 		cb()
@@ -36,10 +66,22 @@ var ready = (cb) => {
 
 ready(() => {
 	getRepos(link).then((repos) => {
-		console.log(repos)
-		document.getElementById('project').innerHTML = '<a href="' + repos[1].html_url + '" target="_blank">' + repos[1].name + '</a>'
-		document.getElementById('project').innerHTML = repos[1].language
+		projects = repos
+		document.getElementById('project_link').setAttribute("href", projects[0].html_url)
+		document.getElementById('project_name').innerHTML = projects[0].name
+		document.getElementById('project_description').innerHTML = projects[0].description
+		document.getElementById('project_language').innerHTML = projects[0].language
+		loop = window.setInterval(() => {
+			if (i == projects.length - 1)
+				i = -1
+			i++
+			document.getElementById('project_link').setAttribute("href", projects[i].html_url)
+			document.getElementById('project_name').innerHTML = projects[i].name
+			document.getElementById('project_description').innerHTML = projects[i].description
+			document.getElementById('project_language').innerHTML = projects[i].language
+		}, 5000)
 	}).catch((err) => {
 		console.log(err)
+		document.getElementById('project_name').innerHTML = '...'
 	})
 })

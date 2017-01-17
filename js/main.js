@@ -1,30 +1,28 @@
 var link = "https://api.github.com/users/ItsJimi/repos"
 
-var getRepos = (url) => {
-	return new Promise((resolve, reject) => {
-		var request = new XMLHttpRequest()
-		request.open('GET', url, true)
+var getRepos = (url, cb) => {
+	var request = new XMLHttpRequest()
+	request.open('GET', url, true)
 
-		request.onload = function() {
-		  if (request.status >= 200 && request.status < 400) {
-			  try {
-				  var res = JSON.parse(request.responseText)
-				  resolve(res)
-			  } catch (e) {
-				  reject('No JSON')
-			  }
-		  }
-		  else {
-		    reject('Wrong server response')
-		  }
-		};
+	request.onload = function() {
+		if (request.status >= 200 && request.status < 400) {
+			try {
+				var res = JSON.parse(request.responseText)
+				cb(null, res)
+			} catch (e) {
+				cb('No JSON', null)
+			}
+		}
+		else {
+			cb('Wrong server response', null)
+		}
+	}
 
-		request.onerror = function() {
-			reject('Error')
-		};
+	request.onerror = function() {
+		cb('Error', null)
+	}
 
-		request.send()
-    })
+	request.send()
 }
 
 var projects = null
@@ -65,7 +63,11 @@ var ready = (cb) => {
 }
 
 ready(() => {
-	getRepos(link).then((repos) => {
+	getRepos(link, (err, repos) => {
+		if (err) {
+			console.log(err)
+			document.getElementById('project_name').innerHTML = '...'
+		}
 		projects = repos
 		document.getElementById('project_link').setAttribute("href", projects[0].html_url)
 		document.getElementById('project_name').innerHTML = projects[0].name
@@ -80,8 +82,5 @@ ready(() => {
 			document.getElementById('project_description').innerHTML = projects[i].description
 			document.getElementById('project_language').innerHTML = projects[i].language
 		}, 5000)
-	}).catch((err) => {
-		console.log(err)
-		document.getElementById('project_name').innerHTML = '...'
 	})
 })

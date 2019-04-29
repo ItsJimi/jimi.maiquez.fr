@@ -49,7 +49,7 @@ a {
 	width: 200px;
 	height: 200px;
 	border-radius: 100%;
-	background: url('../img/avatar.png') center;
+	background: url('https://www.gravatar.com/avatar/fe65f553c23437048d75161e836dd724?s=200') center;
 	background-size: cover;
 }
 

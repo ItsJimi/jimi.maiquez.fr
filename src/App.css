@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Manjari|Playfair+Display:400,700&display=swap');
+
+/*
+  font-family: 'Manjari', sans-serif;
+  font-family: 'Playfair Display', serif;
+*/
+
+html, body, #root, .app {
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+.content {
+  margin: 0px auto;
+  width: 100%;
+  max-width: 650px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header {
+  background: #fff;
+  width: 100%;
+  height: 600px;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 100%);
+  padding-top: 100px;
+}
+
+.header .photo {
+  width: 200px;
+}
+
+.header .photo > img {
+  width: 100%;
+  border-radius: 100%;
+}
+
+.header .profile > .name {
+  font-family: 'Playfair Display', serif;
+  font-size: 70px;
+}
+
+.header .profile > .description {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.header .profile > .socials {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header .profile > .socials > a {
+  text-decoration: none;
+  color: #fff;
+  font-family: 'Manjari', sans-serif;
+  font-weight: bold;
+}
+
+.header .profile > .socials .button, .header .profile > .socials .mail {
+  height: 30px;
+  padding: 10px;
+  background: #000;
+  box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header .profile > .socials .button {
+  width: 30px;
+}
+
+.header .profile > .socials .button > img {
+  width: 100%;
+}

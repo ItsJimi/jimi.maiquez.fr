@@ -1,9 +1,0 @@
-maiquez.fr {
-	root /root/jimi.maiquez.fr
-	header / Server "I m not sure ..."
-}
-
-jimi.maiquez.fr {
-	root /root/jimi.maiquez.fr
-	header / Server "I m not sure ..."
-}
